@@ -1,4 +1,4 @@
-package algebraic;
+package edu.emory.cs.algebraic;
 
 import java.util.Arrays;
 
@@ -32,11 +32,9 @@ public class LongIntegerQuiz extends LongInteger {
                 result[i + 1] -= 1;
             }
         }
-
         if (compareAbs(n) < 0) {
             sign = n.sign;
         }
-
         int index = m - 1;
         for (; index >= 0; index--) {
             if (result[index] != 0)

@@ -1,4 +1,4 @@
-package algebraic;
+package edu.emory.cs.algebraic;
 public abstract class SignedNumeral<T extends SignedNumeral<T>> implements Numeral<T> {
     /**
      * The sign of this numeral.

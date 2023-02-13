@@ -1,4 +1,4 @@
-package algebraic;
+package edu.emory.cs.algebraic;
 
 import org.junit.jupiter.api.Test;
 

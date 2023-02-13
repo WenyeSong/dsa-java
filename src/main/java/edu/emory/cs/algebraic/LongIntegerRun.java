@@ -1,4 +1,4 @@
-package algebraic;
+package edu.emory.cs.algebraic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
