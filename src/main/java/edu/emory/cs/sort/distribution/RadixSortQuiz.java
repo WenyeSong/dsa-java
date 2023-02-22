@@ -35,13 +35,13 @@ public class RadixSortQuiz extends RadixSort {
         }
     }
 
-        public static void main (String[]args)
+ /*       public static void main (String[]args)
         {
-            Integer arr[] = {802, 883, 789, 14, 66, 2, 66, 100, 543, 289, 1000, 345, 145690}; //最底下的先出来
+            Integer arr[] = {802, 883, 789, 14, 66, 2, 66, 100, 543, 289, 1000, 345, 145690}; //move out numbers from the bottom
             int n = arr.length;
             RadixSortQuiz test = new RadixSortQuiz();
             test.sort(arr, 0, arr.length);
             for (int i = 0; i < n; i++)
                 System.out.print(arr[i] + " ");
-        }
+        }*/
     }
