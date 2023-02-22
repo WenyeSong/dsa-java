@@ -1,21 +1,20 @@
-plugins {
-    id 'java'
-}
-
+plugins { id 'java' }
 group 'edu.emory.cs'
 version '1.0-SNAPSHOT'
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-}
-
 test {
     useJUnitPlatform()
+    minHeapSize = "8g" // initial heap size
+    maxHeapSize = "16g" // maximum heap size
 }
 
 dependencies {

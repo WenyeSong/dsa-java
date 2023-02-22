@@ -16,11 +16,13 @@ public class TernaryHeapQuiz <T extends Comparable<T>> extends AbstractPriorityQ
         keys = new ArrayList<>();
         add(null);
     }
+
     @Override
     public void add(T key) {
         keys.add(key);
         swim(size());
     }
+
     private void swim(int k) {
         int parent;
         for (; 1 < k; k = parent) {
@@ -42,6 +44,7 @@ public class TernaryHeapQuiz <T extends Comparable<T>> extends AbstractPriorityQ
         }
         return parent;
     }
+
     @Override
     public T remove() {
         if (isEmpty()) return null;
@@ -63,6 +66,7 @@ public class TernaryHeapQuiz <T extends Comparable<T>> extends AbstractPriorityQ
             k = maxChild;
         }
     }
+
     private int findMaxChild(int k) {
         int child1 = 3 * k - 1;
         int child2 = 3 * k;

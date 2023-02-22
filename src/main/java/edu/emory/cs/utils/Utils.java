@@ -9,4 +9,7 @@ public class Utils {
     static public void main(String[] args) {
         System.out.println(getMiddleIndex(0, 10));
     }
+    static public double log2(int i) {
+        return Math.log(i) / Math.log(2);
+    }
 }
