@@ -5,9 +5,6 @@ import edu.emory.cs.sort.distribution.RadixSortQuiz;
 import java.util.Collections;
 import java.util.Comparator;
 
-/**
- * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
- */
 public class ShellSortQuiz<T extends Comparable<T>> extends ShellSort<T> {
     public ShellSortQuiz() {
         this(Comparator.naturalOrder());
