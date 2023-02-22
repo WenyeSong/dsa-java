@@ -45,7 +45,7 @@ public class SortTest {
 
     void testRobustness(AbstractSort<Integer> engine) {
         final int iter = 100;
-        final int size = 10;
+        final int size = 1000;
         final Random rand = new Random();
         Integer[] original, sorted;
 
