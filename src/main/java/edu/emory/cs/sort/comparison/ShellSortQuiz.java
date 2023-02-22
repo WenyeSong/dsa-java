@@ -40,15 +40,15 @@ public class ShellSortQuiz<T extends Comparable<T>> extends ShellSort<T> {
             index--;
         return index;
     }
-    public static void main (String[]args)
+/*    public static void main (String[]args)
     {
-        Integer arr[] = {802, 24, 2, 66, 66}; //最底下的先出来
+        Integer arr[] = {802, 24, 2, 66, 66};
         int n = arr.length;
         ShellSortQuiz test = new ShellSortQuiz();
         test.sort(arr, 0, arr.length);
         for (int i = 0; i < n; i++)
             System.out.print(arr[i] + " ");
-    }
+    }*/
 
 
 }
