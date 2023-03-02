@@ -8,6 +8,7 @@ public class HybridSortHW<T extends Comparable<T>> implements HybridSort<T>  {
     @Override
     public T[] sort(T[][] input) {
         MergeSort<T> mg = new MergeSort<>();
+
         for (int i = 0; i < input.length; i++) {
             T[] curr = input[i];
             int index = 0;
@@ -19,9 +20,8 @@ public class HybridSortHW<T extends Comparable<T>> implements HybridSort<T>  {
                 }
             }
 
-            if (index == curr.length - 1) {
-            } else {
-                //descending
+            if (index == curr.length - 1) { // all ascending
+            } else {  //descending
                 for (int j = curr.length - 2; j > 0; j--) {
                     if (curr[j].compareTo(curr[j + 1]) <= 0) {
                         index++;
@@ -29,17 +29,13 @@ public class HybridSortHW<T extends Comparable<T>> implements HybridSort<T>  {
                         break;
                     }
                 }
-                if (index == curr.length - 1) {
-                    //all descending, reverse
+                if (index == curr.length - 1) { //all descending, reverse
                     for(int k = 0; k < input[i].length / 2; k++) {
                         int indexChange = input[i].length - 1 - k;
                         swap(input, k, indexChange, i);
                     }
-                } else if (index > curr.length / 2) {
-                    //mostly descending
-                    mg.sort(input[i]);
                 } else {
-                    //random
+                    //random, mostly descending, mostly ascending
                     mg.sort(input[i]);
                 }
             }
