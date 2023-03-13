@@ -5,30 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="722037c3-abee-4926-b629-bee6700e434b" name="Changes" comment="git add --all">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/tree/AbstractBinaryNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/tree/AbstractBinarySearchTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/tree/BinaryNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/tree/BinarySearchTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/tree/balanced/AVLNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/tree/balanced/AVLTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/tree/balanced/AbstractBalancedBinarySearchTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/tree/balanced/BalancedBinarySearchTreeQuiz.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/tree/balanced/RedBlackNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/tree/balanced/RedBlackTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/trie/Entity.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/trie/Trie.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/trie/TrieNode.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/trie/TrieQuiz.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/trie/autocomplete/Autocomplete.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/trie/autocomplete/AutocompleteHW.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/edu/emory/cs/tree/treeTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/edu/emory/cs/trie/TrieQuizTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/edu/emory/cs/trie/TrieTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/edu/emory/cs/trie/autocomplete/AutocompleteTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/emory/cs/AbstractBinaryNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/emory/cs/sort/distribution/RadixSortQuiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/emory/cs/sort/distribution/RadixSortQuiz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/edu/emory/cs/sort/HybridSortTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/emory/cs/sort/HybridSortTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,13 +86,13 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Gradle.treeTest.testQuiz1">
-    <configuration name="BalancedBinarySearchTreeQuiz" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.emory.cs.tree.balanced.BalancedBinarySearchTreeQuiz" />
+  <component name="RunManager" selected="Gradle.TrieQuizTest.testGetEntities1">
+    <configuration name="TrieQuiz" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.emory.cs.trie.TrieQuiz" />
       <module name="dsa-java.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="edu.emory.cs.tree.balanced.*" />
+          <option name="PATTERN" value="edu.emory.cs.trie.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -115,7 +100,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HybridSortTest.testRobustness" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TrieQuizTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -128,7 +113,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;edu.emory.cs.sort.HybridSortTest.testRobustness&quot;" />
+            <option value="&quot;edu.emory.cs.trie.TrieQuizTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -138,7 +123,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="treeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TrieQuizTest.testGetEntities" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -151,7 +136,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;edu.emory.cs.tree.treeTest&quot;" />
+            <option value="&quot;edu.emory.cs.trie.TrieQuizTest.testGetEntities&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -161,7 +146,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="treeTest.testQuiz1" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TrieQuizTest.testGetEntities1" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -174,7 +159,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;edu.emory.cs.tree.treeTest.testQuiz1&quot;" />
+            <option value="&quot;edu.emory.cs.trie.TrieQuizTest.testGetEntities1&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -184,7 +169,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="treeTest.testQuiz2" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TrieQuizTest.testGetEntities2" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -197,7 +182,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;edu.emory.cs.tree.treeTest.testQuiz2&quot;" />
+            <option value="&quot;edu.emory.cs.trie.TrieQuizTest.testGetEntities2&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -209,11 +194,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.treeTest.testQuiz1" />
-        <item itemvalue="Gradle.treeTest" />
-        <item itemvalue="Gradle.treeTest.testQuiz2" />
-        <item itemvalue="Application.BalancedBinarySearchTreeQuiz" />
-        <item itemvalue="Gradle.HybridSortTest.testRobustness" />
+        <item itemvalue="Gradle.TrieQuizTest.testGetEntities1" />
+        <item itemvalue="Gradle.TrieQuizTest.testGetEntities2" />
+        <item itemvalue="Gradle.TrieQuizTest.testGetEntities" />
+        <item itemvalue="Gradle.TrieQuizTest" />
+        <item itemvalue="Application.TrieQuiz" />
       </list>
     </recent_temporary>
   </component>
@@ -238,7 +223,7 @@
       <workItem from="1677561073543" duration="2742000" />
       <workItem from="1677648340457" duration="482000" />
       <workItem from="1677747279205" duration="34274000" />
-      <workItem from="1678085324923" duration="38263000" />
+      <workItem from="1678085324923" duration="59897000" />
     </task>
     <task id="LOCAL-00001" summary="build.gradle">
       <created>1674082756127</created>
@@ -331,7 +316,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677792364362</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="git add --all">
+      <created>1678668644790</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1678668644790</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
