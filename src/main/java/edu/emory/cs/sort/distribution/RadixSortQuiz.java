@@ -35,7 +35,7 @@ public class RadixSortQuiz extends RadixSort {
         }
     }
 
-   /*     public static void main (String[]args)
+        public static void main (String[]args)
         {
             Integer arr[] = {113,145,367,79866,66,23,66,8}; //move out numbers from the bottom
             int n = arr.length;
@@ -43,5 +43,5 @@ public class RadixSortQuiz extends RadixSort {
             test.sort(arr, 0, arr.length);
             for (int i = 0; i < n; i++)
                 System.out.print(arr[i] + " ");
-        }*/
+        }
     }
