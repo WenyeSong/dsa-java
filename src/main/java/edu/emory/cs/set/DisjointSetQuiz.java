@@ -1,6 +1,4 @@
 package edu.emory.cs.set;
-
-/** @author Jinho D. Choi */
 public class DisjointSetQuiz {
     static public void main(String[] args) {
         DisjointSet ds = new DisjointSet(5);
