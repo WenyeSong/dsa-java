@@ -18,22 +18,27 @@ public class AutocompleteHW extends Autocomplete<List<String>> {
     @Override
     public List<String> getCandidates(String prefix) {
         // TODO: to be updated
-            TrieNode<List<String>> root = this.getRoot();
-            Map<Character, TrieNode<List<String>>> childrenMap;
-            for (int i = 0; i < prefix.length(); i++) {
-                childrenMap = root.getChildrenMap();
-                root = childrenMap.get(prefix.charAt(i));
-            } // find the last letter of prefix
+        TrieNode<List<String>> root = this.getRoot();
+        root = findLastLetter(root, prefix);  // find the last letter of prefix
 
-            List<String> values = root.getValue();
-            List<String> ans = new ArrayList<>();
+        List<String> values = root.getValue();
+        List<String> ans = new ArrayList<>();
 
-            for (String item : values) {
-                ans.add(prefix.substring(0, prefix.length() - 1) + item);
-            }
-
-            return ans.subList(0,getMax());
+        for (String item : values) {
+            ans.add(prefix.substring(0, prefix.length() - 1) + item);
         }
+
+        return ans.subList(0, getMax());
+    }
+
+    public TrieNode<List<String>> findLastLetter(TrieNode<List<String>> root, String prefix) {
+        Map<Character, TrieNode<List<String>>> childrenMap;
+        for (int i = 0; i < prefix.length(); i++) {
+            childrenMap = root.getChildrenMap();
+            root = childrenMap.get(prefix.charAt(i));
+        }
+            return root;
+    }
 
     public void generateList(TrieNode<List<String>> root) {
         Map<Character, TrieNode<List<String>>> childrenMap = root.getChildrenMap();
@@ -45,7 +50,7 @@ public class AutocompleteHW extends Autocomplete<List<String>> {
                 valueList.add(root.getKey() + s);
             }
         }
-        if (childrenMap.isEmpty() || root.isEndState()){
+        if (childrenMap.isEmpty() || root.isEndState()) {
             valueList.add(String.valueOf(root.getKey()));
         }
         Collections.sort(valueList, new StringCompartor());
@@ -56,7 +61,7 @@ public class AutocompleteHW extends Autocomplete<List<String>> {
         public int compare(String o1, String o2) {
             if (o1.length() != o2.length()) {
                 return o1.length() - o2.length();
-            }  else {
+            } else {
                 return o1.compareTo(o2);
             }
         }
@@ -66,16 +71,22 @@ public class AutocompleteHW extends Autocomplete<List<String>> {
     public void pickCandidate(String prefix, String candidate) {
         // TODO: to be updated
         TrieNode<List<String>> root = this.getRoot();
-        Map<Character, TrieNode<List<String>>> childrenMap;
-        for (int i = 0; i < prefix.length(); i++) {
-            childrenMap = root.getChildrenMap();
-            root = childrenMap.get(prefix.charAt(i));
-        }
+        root = findLastLetter(root, prefix);
         List<String> values = root.getValue();
         String temp = candidate.substring(1);
         values.remove(temp);
         values.add(0, temp);
     }
 
-
+    public static void main(String[] args) {
+        final String dict_file = "src/main/resources/dict.txt";
+        final int max = 15;
+        Autocomplete<?> ac = new AutocompleteHW(dict_file, max);
+        String prefix;
+        prefix = "ph";
+        ac.pickCandidate("ph","pho");
+        System.out.println(ac.getCandidates(prefix));
+    }
 }
+
+
