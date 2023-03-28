@@ -78,7 +78,7 @@ public class AutocompleteHW extends Autocomplete<List<String>> {
         values.add(0, temp);
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         final String dict_file = "src/main/resources/dict.txt";
         final int max = 15;
         Autocomplete<?> ac = new AutocompleteHW(dict_file, max);
@@ -86,7 +86,7 @@ public class AutocompleteHW extends Autocomplete<List<String>> {
         prefix = "ph";
         ac.pickCandidate("ph","pho");
         System.out.println(ac.getCandidates(prefix));
-    }
+    }*/
 }
 
 
