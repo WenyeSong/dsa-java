@@ -9,10 +9,6 @@ import java.util.Map;
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class AutocompleteHWExtra extends Autocomplete<List<AutocompleteHWExtra.Reply>> {
-    public AutocompleteHWExtra(String dict_file, int max) {
-        super(dict_file, max);
-        generateList(this.getRoot());
-    }
 
     @Override
     public List<String> getCandidates(String prefix) {
@@ -31,6 +27,31 @@ public class AutocompleteHWExtra extends Autocomplete<List<AutocompleteHWExtra.R
         return ans.subList(0,getMax());
     }
 
+    @Override
+    public void pickCandidate(String prefix, String candidate) {
+        // TODO: to be updated
+        TrieNode<List<Reply>> root = this.getRoot();
+        root = findLastLetter(root, prefix);
+        List<Reply> values = root.getValue();
+        String temp = candidate.substring(1);
+        for (Reply r : values) {
+            if (r.word.equals(temp)) {
+                r.freq++;
+            }
+        }
+    }
+    public AutocompleteHWExtra(String dict_file, int max) {
+        super(dict_file, max);
+        generateList(this.getRoot());
+    }
+    public TrieNode<List<Reply>> findLastLetter(TrieNode<List<Reply>> root, String prefix) {
+        Map<Character, TrieNode<List<Reply>>> childrenMap;
+        for (int i = 0; i < prefix.length(); i++) {
+            childrenMap = root.getChildrenMap();
+            root = childrenMap.get(prefix.charAt(i));
+        }
+        return root;
+    }
     public void generateList(TrieNode<List<Reply>> root) {
         Map<Character, TrieNode<List<Reply>>> childrenMap = root.getChildrenMap();
         List<Reply> valueList = new ArrayList<>();
@@ -62,27 +83,6 @@ public class AutocompleteHWExtra extends Autocomplete<List<AutocompleteHWExtra.R
         }
     }
 
-    @Override
-    public void pickCandidate(String prefix, String candidate) {
-        // TODO: to be updated
-        TrieNode<List<Reply>> root = this.getRoot();
-        root = findLastLetter(root, prefix);
-        List<Reply> values = root.getValue();
-        String temp = candidate.substring(1);
-        for (Reply r : values) {
-            if (r.word.equals(temp)) {
-                r.freq++;
-            }
-        }
-    }
-    public TrieNode<List<Reply>> findLastLetter(TrieNode<List<Reply>> root, String prefix) {
-        Map<Character, TrieNode<List<Reply>>> childrenMap;
-        for (int i = 0; i < prefix.length(); i++) {
-            childrenMap = root.getChildrenMap();
-            root = childrenMap.get(prefix.charAt(i));
-        }
-        return root;
-    }
     public class Reply{
         int freq;
         String word;
@@ -111,6 +111,5 @@ public class AutocompleteHWExtra extends Autocomplete<List<AutocompleteHWExtra.R
 
         ac.pickCandidate("ph", "phr");
         System.out.println(ac.getCandidates("ph"));
-
     }*/
 }
