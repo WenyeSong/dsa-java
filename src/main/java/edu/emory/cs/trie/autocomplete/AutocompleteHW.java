@@ -31,9 +31,8 @@ public class AutocompleteHW extends Autocomplete<List<String>> {
             for (String item : values) {
                 ans.add(prefix.substring(0, prefix.length() - 1) + item);
             }
-            System.out.println(ans);
 
-            return ans;
+            return ans.subList(0,getMax());
         }
 
     public void generateList(TrieNode<List<String>> root) {
