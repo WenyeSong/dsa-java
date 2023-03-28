@@ -18,11 +18,7 @@ public class AutocompleteHWExtra extends Autocomplete<List<AutocompleteHWExtra.R
     public List<String> getCandidates(String prefix) {
         // TODO: to be updated
         TrieNode<List<Reply>> root = this.getRoot();
-        Map<Character, TrieNode<List<Reply>>> childrenMap;
-        for (int i = 0; i < prefix.length(); i++) {
-            childrenMap = root.getChildrenMap();
-            root = childrenMap.get(prefix.charAt(i));
-        }
+        root = findLastLetter(root, prefix);
 
         List<Reply> values = root.getValue();
         List<String> ans = new ArrayList<>();
@@ -70,11 +66,7 @@ public class AutocompleteHWExtra extends Autocomplete<List<AutocompleteHWExtra.R
     public void pickCandidate(String prefix, String candidate) {
         // TODO: to be updated
         TrieNode<List<Reply>> root = this.getRoot();
-        Map<Character, TrieNode<List<Reply>>> childrenMap;
-        for (int i = 0; i < prefix.length(); i++) {
-            childrenMap = root.getChildrenMap();
-            root = childrenMap.get(prefix.charAt(i));
-        }
+        root = findLastLetter(root, prefix);
         List<Reply> values = root.getValue();
         String temp = candidate.substring(1);
         for (Reply r : values) {
@@ -82,6 +74,14 @@ public class AutocompleteHWExtra extends Autocomplete<List<AutocompleteHWExtra.R
                 r.freq++;
             }
         }
+    }
+    public TrieNode<List<Reply>> findLastLetter(TrieNode<List<Reply>> root, String prefix) {
+        Map<Character, TrieNode<List<Reply>>> childrenMap;
+        for (int i = 0; i < prefix.length(); i++) {
+            childrenMap = root.getChildrenMap();
+            root = childrenMap.get(prefix.charAt(i));
+        }
+        return root;
     }
     public class Reply{
         int freq;
@@ -91,5 +91,26 @@ public class AutocompleteHWExtra extends Autocomplete<List<AutocompleteHWExtra.R
             this.word = word;
         }
     }
+/*    public static void main(String[] args) {
+        final String dict_file = "src/main/resources/dict.txt";
+        final int max = 15;
 
+        Autocomplete<?> ac = new AutocompleteHWExtra(dict_file, max);
+
+        System.out.println(ac.getCandidates("ph"));
+        ac.pickCandidate("ph", "pho");
+        ac.pickCandidate("ph", "pho");
+        ac.pickCandidate("ph", "pho");
+        ac.pickCandidate("ph", "pho");
+        ac.pickCandidate("ph", "pho");
+        System.out.println(ac.getCandidates("ph"));
+
+        ac.pickCandidate("ph", "phi");
+        ac.pickCandidate("ph", "phi");
+        System.out.println(ac.getCandidates("ph"));
+
+        ac.pickCandidate("ph", "phr");
+        System.out.println(ac.getCandidates("ph"));
+
+    }*/
 }
