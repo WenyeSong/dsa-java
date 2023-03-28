@@ -32,7 +32,7 @@ public class AutocompleteHWExtra extends Autocomplete<List<AutocompleteHWExtra.R
             String temp = prefix.substring(0, prefix.length() - 1) + item.word;
             ans.add(temp);
         }
-        return ans;
+        return ans.subList(0,getMax());
     }
 
     public void generateList(TrieNode<List<Reply>> root) {
@@ -92,28 +92,4 @@ public class AutocompleteHWExtra extends Autocomplete<List<AutocompleteHWExtra.R
         }
     }
 
-/*    public static void main(String[] args) {
-        final String dict_file = "src/main/resources/dict.txt";
-        final int max = 20;
-
-
-        Autocomplete<?> ac = new AutocompleteHW(dict_file, max);
-
-        System.out.println(ac.getCandidates("sh"));
-        ac.pickCandidate("sh", "ship");
-        ac.pickCandidate("sh", "ship");
-       *//* System.out.println(ac.getCandidates("sh"));*//*
-
-        ac.pickCandidate("sh", "shell");
-       *//* System.out.println(ac.getCandidates("sh"));*//*
-
-        ac.pickCandidate("sh", "shore");
-   *//*     System.out.println(ac.getCandidates("sh"));*//*
-
-        ac.pickCandidate("sh", "shore");
-        ac.pickCandidate("sh", "shore");
-        ac.pickCandidate("sh", "shore");
-        System.out.println(ac.getCandidates("sh"));
-
-    }*/
 }
