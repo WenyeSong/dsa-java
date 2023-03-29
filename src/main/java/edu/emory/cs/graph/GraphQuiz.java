@@ -52,7 +52,7 @@ public class GraphQuiz extends Graph {
         List<Deque<Edge>> outgoingEdges = this.getOutgoingEdges();// all outgoing edges
         Deque<Edge> edges = outgoingEdges.get(v);//  v as source, edges of v
         List<Edge> edgeList = edges.stream().toList();
-        // 根据边将target加入已遍历的list，并进入循环寻找环的下一条边
+
         for (Edge edge : edgeList) {
             searched.add(edge.getTarget());
             findCycle(edge.getTarget(), searched, trace, allCircles);
