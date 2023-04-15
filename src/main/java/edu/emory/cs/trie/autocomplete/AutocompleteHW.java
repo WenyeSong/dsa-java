@@ -1,4 +1,3 @@
-
 package edu.emory.cs.trie.autocomplete;
 
 import edu.emory.cs.trie.TrieNode;
@@ -12,11 +11,6 @@ public class AutocompleteHW extends Autocomplete<List<String>> {
     public AutocompleteHW(String dict_file, int max) {
         super(dict_file, max);
     }
-    public TrieNode<List<String>> getNode(String prefix) {
-
-        return find(prefix);
-
-    }
     @Override
     public List<String> getCandidates(String prefix) {
         if (prefix == null || prefix.trim().isEmpty()) {
@@ -24,18 +18,22 @@ public class AutocompleteHW extends Autocomplete<List<String>> {
         } else {
             prefix = prefix.trim();
         }
-        TrieNode<List<String>> node = getNode(prefix);
+        TrieNode<List<String>> nodeOfPrefix = find(prefix);
 
         Queue<String> queue = new PriorityQueue<>(Comparator.comparing(String::length).thenComparing(String::compareTo));
-        if (node != null) {
-            dfs(node, prefix, queue);
+
+        if (nodeOfPrefix != null) {
+            dfs(nodeOfPrefix, prefix, queue); // put node of prefix into the sorted queue
         }
 
         List<String> candidates = new ArrayList<>();
-        TrieNode<List<String>> temp = find(prefix);
-        List<String> memory;
-        if (temp!=null && (memory = temp.getValue()) != null) {
-            candidates.addAll(memory);
+        List<String> valueOfNode;
+
+        if (nodeOfPrefix != null){  // check whether prefix has node
+            valueOfNode = nodeOfPrefix.getValue();
+            if(valueOfNode  != null) { //check whether prefix has value
+                candidates.addAll(valueOfNode);
+            }
         }
 
         while (!queue.isEmpty() && candidates.size() < getMax()) {
@@ -51,6 +49,7 @@ public class AutocompleteHW extends Autocomplete<List<String>> {
         Set<String> initialLetters = new HashSet<>();
         for (TrieNode<List<String>> child : getRoot().getChildrenMap().values()) {
             initialLetters.add(String.valueOf(child.getKey()));
+            if(initialLetters.size() == getMax()){break;}
         }
         List<String> initialLettersList = new ArrayList<>(initialLetters);
         Collections.sort(initialLettersList);
@@ -70,23 +69,27 @@ public class AutocompleteHW extends Autocomplete<List<String>> {
 
     @Override
     public void pickCandidate(String prefix, String candidate) {
-        if (candidate == null) return;
         prefix = prefix.trim().toLowerCase();
-        TrieNode<List<String>> node = find(prefix);
-        if (node == null) {
+        TrieNode<List<String>> nodeOfPrefix = find(prefix);
+        if (candidate == null) {
+            return;
+        }
+
+        if (nodeOfPrefix == null) {
             put(prefix, new ArrayList<>());
-            node = find(prefix);
-            node.setEndState(false);
+            nodeOfPrefix = find(prefix);
+            nodeOfPrefix.setEndState(false);
         }
-        List<String> memory = node.getValue();
-        if (memory == null) {
-            memory = new ArrayList<>();
-            node.setValue(memory);
+
+        List<String> valueOfPrefix = nodeOfPrefix.getValue();
+        if (valueOfPrefix == null) {
+            valueOfPrefix = new ArrayList<>();
+            nodeOfPrefix.setValue(valueOfPrefix);
         }
-        memory.remove(candidate);
-        memory.add(0, candidate);
-        node = find(candidate);
-        List<String> curValue = node == null ? null : node.getValue();
-        put(candidate, curValue);
+        valueOfPrefix.remove(candidate);
+        valueOfPrefix.add(0, candidate);
+        nodeOfPrefix = find(candidate);
+        List<String> Value = nodeOfPrefix == null ? null : nodeOfPrefix.getValue();
+        put(candidate, Value);
     }
 }
