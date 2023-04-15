@@ -1,10 +1,9 @@
-package edu.emory.cs.trie.autocomplete;
-import edu.emory.cs.trie.TrieNode;
 
+package edu.emory.cs.trie.autocomplete;
+
+import edu.emory.cs.trie.TrieNode;
+import java.lang.*;
 import java.util.*;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
@@ -12,81 +11,82 @@ import java.util.HashMap;
 public class AutocompleteHW extends Autocomplete<List<String>> {
     public AutocompleteHW(String dict_file, int max) {
         super(dict_file, max);
-        generateList(this.getRoot());
     }
+    public TrieNode<List<String>> getNode(String prefix) {
 
+        return find(prefix);
+
+    }
     @Override
     public List<String> getCandidates(String prefix) {
-        // TODO: to be updated
-        TrieNode<List<String>> root = this.getRoot();
-        root = findLastLetter(root, prefix);  // find the last letter of prefix
+        if (prefix == null || prefix.trim().isEmpty()) {
+            return getInitialLetters();
+        } else {
+            prefix = prefix.trim();
+        }
+        TrieNode<List<String>> node = getNode(prefix);
 
-        List<String> values = root.getValue();
-        List<String> ans = new ArrayList<>();
-
-        for (String item : values) {
-            ans.add(prefix.substring(0, prefix.length() - 1) + item);
+        Queue<String> queue = new PriorityQueue<>(Comparator.comparing(String::length).thenComparing(String::compareTo));
+        if (node != null) {
+            dfs(node, prefix, queue);
         }
 
-        return ans.subList(0, getMax());
-    }
-
-    public TrieNode<List<String>> findLastLetter(TrieNode<List<String>> root, String prefix) {
-        Map<Character, TrieNode<List<String>>> childrenMap;
-        for (int i = 0; i < prefix.length(); i++) {
-            childrenMap = root.getChildrenMap();
-            root = childrenMap.get(prefix.charAt(i));
+        List<String> candidates = new ArrayList<>();
+        TrieNode<List<String>> temp = find(prefix);
+        List<String> memory;
+        if (temp!=null && (memory = temp.getValue()) != null) {
+            candidates.addAll(memory);
         }
-            return root;
-    }
 
-    public void generateList(TrieNode<List<String>> root) {
-        Map<Character, TrieNode<List<String>>> childrenMap = root.getChildrenMap();
-        List<String> valueList = new ArrayList<>();
-        for (Character key : childrenMap.keySet()) {
-            TrieNode<List<String>> child = root.getChild(key);
-            generateList(child);
-            for (String s : child.getValue()) {
-                valueList.add(root.getKey() + s);
+        while (!queue.isEmpty() && candidates.size() < getMax()) {
+            String candidate = queue.poll();
+            if (!candidates.contains(candidate)) {
+                candidates.add(candidate);
             }
         }
-        if (childrenMap.isEmpty() || root.isEndState()) {
-            valueList.add(String.valueOf(root.getKey()));
-        }
-        Collections.sort(valueList, new StringCompartor());
-        root.setValue(valueList);
+        return candidates;
     }
 
-    private static class StringCompartor implements Comparator<String> {
-        public int compare(String o1, String o2) {
-            if (o1.length() != o2.length()) {
-                return o1.length() - o2.length();
-            } else {
-                return o1.compareTo(o2);
-            }
+    private List<String> getInitialLetters() {
+        Set<String> initialLetters = new HashSet<>();
+        for (TrieNode<List<String>> child : getRoot().getChildrenMap().values()) {
+            initialLetters.add(String.valueOf(child.getKey()));
+        }
+        List<String> initialLettersList = new ArrayList<>(initialLetters);
+        Collections.sort(initialLettersList);
+        return initialLettersList;
+    }
+
+
+    private void dfs(TrieNode<List<String>> node, String prefix, Queue<String> queue) {
+        if (node.isEndState()) {
+            queue.add(prefix);
+        }
+        for (Character key : node.getChildrenMap().keySet()) {
+            TrieNode<List<String>> child = node.getChild(key);
+            dfs(child, prefix + key, queue);
         }
     }
 
     @Override
     public void pickCandidate(String prefix, String candidate) {
-        // TODO: to be updated
-        TrieNode<List<String>> root = this.getRoot();
-        root = findLastLetter(root, prefix);
-        List<String> values = root.getValue();
-        String temp = candidate.substring(1);
-        values.remove(temp);
-        values.add(0, temp);
+        if (candidate == null) return;
+        prefix = prefix.trim().toLowerCase();
+        TrieNode<List<String>> node = find(prefix);
+        if (node == null) {
+            put(prefix, new ArrayList<>());
+            node = find(prefix);
+            node.setEndState(false);
+        }
+        List<String> memory = node.getValue();
+        if (memory == null) {
+            memory = new ArrayList<>();
+            node.setValue(memory);
+        }
+        memory.remove(candidate);
+        memory.add(0, candidate);
+        node = find(candidate);
+        List<String> curValue = node == null ? null : node.getValue();
+        put(candidate, curValue);
     }
-
-/*    public static void main(String[] args) {
-        final String dict_file = "src/main/resources/dict.txt";
-        final int max = 15;
-        Autocomplete<?> ac = new AutocompleteHW(dict_file, max);
-        String prefix;
-        prefix = "ph";
-        ac.pickCandidate("ph","pho");
-        System.out.println(ac.getCandidates(prefix));
-    }*/
 }
-
-
