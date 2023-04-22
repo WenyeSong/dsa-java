@@ -15,51 +15,23 @@ public class NetworkFlowQuiz {
      * @return a set of all augmenting paths between the specific source and target vertices in the graph.
      */
     public Set<Subgraph> getAugmentingPaths(Graph graph, int source, int target) {
-        // TODO: to be updated
         MaxFlow mf = new MaxFlow(graph);
-        Stack<Integer> stack = new Stack<>();
-        boolean[] visited = new boolean[graph.size()];
         Set<Subgraph> paths = new HashSet<>();
-        Edge[] parent = new Edge[graph.size()];
-
-        visited[source] = true;
-        stack.push(source);
-        List<Deque<Edge>> outgoingEdges = graph.getOutgoingEdges();
-
-        while(! stack.empty()) {
-            int v = stack.pop();
-
-            if (v == target) { //add the path into paths
-                Subgraph path = new Subgraph();
-                Stack<Edge> tmp = new Stack<>();
-
-                while(v != source){
-                    Edge e = parent[v];
-                    tmp.push(e);
-                    v = e.getSource();
-                }
-                while(!tmp.empty()){
-                    path.addEdge(tmp.pop());
-                }
-
-                paths.add(path);
-
-            } else { // add neighbour of path into stack
-                for(Edge edge : outgoingEdges.get(v)){
-
-                    if(mf.getResidual(edge) <= 0) continue;// condition1
-
-                    int nextNode = edge.getTarget();
-                    if(visited[nextNode]) continue;//condition2
-                    if (nextNode != target){
-                        visited[nextNode] = true;
-                    }
-                    stack.push(nextNode);
-                    parent[nextNode] = edge;
-                }
-            }
-        }
+        getAugmentingPath(graph,mf, new Subgraph(), source, target,paths);
         return paths;
+    }
+    private void getAugmentingPath(Graph graph, MaxFlow mf, Subgraph sub, int source, int target, Set<Subgraph> paths) {
+        if (source == target) paths.add(sub);
+        Subgraph tmp;
+
+        for (Edge edge : graph.getIncomingEdges(target)) {
+            if (sub.contains(edge.getSource())) continue;
+            if (mf.getResidual(edge) <= 0) continue;
+            tmp = new Subgraph(sub);
+            tmp.addEdge(edge);
+            getAugmentingPath(graph, mf, tmp, source, edge.getSource(), paths);
+        }
+
     }
 
     public static void main(String[] args) {
@@ -70,9 +42,8 @@ public class NetworkFlowQuiz {
         for (Subgraph path: paths){
             System.out.println(path.getEdges());
         }
-
-
     }
+
     public static Graph getGraph0() {
         Graph graph = new Graph(6);
         int s = 0, t = 5;
