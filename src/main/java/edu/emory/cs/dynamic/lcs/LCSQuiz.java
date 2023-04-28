@@ -15,9 +15,7 @@ public class LCSQuiz extends LCSDynamic {
             Set<String> results = new HashSet<>();
             String LCSSample = solve(a, b);
             int largestLength = LCSSample.length();
-//        System.out.println(res+len);
-//        solveAll(a.toCharArray(), b.toCharArray(), len, "", results);
-//        System.out.println(results);
+
             List<String> lcs = lcs(a, b);
             System.out.println(lcs);
             for (String tmp : lcs) {
