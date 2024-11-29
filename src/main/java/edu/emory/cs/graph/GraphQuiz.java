@@ -3,9 +3,6 @@ package edu.emory.cs.graph;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * @author Jinho D. Choi
- */
 public class GraphQuiz extends Graph {
 
     public GraphQuiz(int size) {
