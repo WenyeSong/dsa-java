@@ -4,9 +4,6 @@ import edu.emory.cs.trie.TrieNode;
 import java.lang.*;
 import java.util.*;
 
-/**
- * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
- */
 public class AutocompleteHW extends Autocomplete<List<String>> {
     public AutocompleteHW(String dict_file, int max) {
         super(dict_file, max);
