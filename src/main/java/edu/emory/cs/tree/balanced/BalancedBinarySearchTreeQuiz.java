@@ -2,7 +2,6 @@ package edu.emory.cs.tree.balanced;
 
 import edu.emory.cs.tree.BinaryNode;
 
-//* @author Jinho D. Choi
 
 public class BalancedBinarySearchTreeQuiz<T extends Comparable<T>> extends AbstractBalancedBinarySearchTree<T, BinaryNode<T>> {
     @Override
