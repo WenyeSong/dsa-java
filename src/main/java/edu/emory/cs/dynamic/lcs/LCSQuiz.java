@@ -1,9 +1,6 @@
 package edu.emory.cs.dynamic.lcs;
 import java.util.*;
 
-/**
- * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
- */
 public class LCSQuiz extends LCSDynamic {
     /**
      * @param a the first string.
